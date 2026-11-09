@@ -1,0 +1,52 @@
+baseURL: https://stacknotes.me/
+title: Stack Notes
+theme: stacknote
+
+languageCode: en-us
+locale: en-US
+
+enableRobotsTXT: true
+
+taxonomies:
+  tag: tags
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  author: Stack Notes
+  authorInitials: SN
+  role: Software Engineering
+  description: >
+    Technical notes on software architecture,
+    distributed systems, and engineering.
+
+  homeEyebrow: ENGINEERING · FIELD NOTES
+  homeTitle: Notes on building software systems
+  homeIntro: >
+    Practical engineering notes, architectural decisions,
+    experiments, and lessons from building real systems.
+
+  mainSection: articles
+
+  showToc: true
+  showTopics: true
+  showAbout: false
+  showNewsletter: true
+
+menu:
+  main:
+    - name: Archive
+      url: /archives/
+      weight: 10
+
+    - name: Search
+      url: /search/
+      weight: 20
+
+    - name: Tags
+      url: /tags/
+      weight: 30
