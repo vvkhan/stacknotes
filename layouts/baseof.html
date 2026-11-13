@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default .Site.Language.Lang }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">{{ i18n "skipToContent" }}</a>
+  {{ partial "header.html" . }}
+
+  <div class="site-columns">
+    <aside class="site-sidebar site-sidebar--left" aria-label="Site navigation">
+      {{ partial "sidebar/left.html" . }}
+    </aside>
+
+    <main id="main-content" class="site-columns__main">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <aside class="site-sidebar site-sidebar--right" aria-label="Page navigation">
+      {{ partial "sidebar/right.html" . }}
+    </aside>
+  </div>
+
+  {{ partial "footer.html" . }}
+  {{ partial "scripts.html" . }}
+  <script src="{{ "js/sidebar.js" | relURL }}" defer></script>
+  <script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "neutral",
+    securityLevel: "strict",
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: false
+    }
+  });
+  </script>
+</body>
+</html>

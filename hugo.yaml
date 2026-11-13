@@ -8,6 +8,7 @@ locale: en-US
 enableRobotsTXT: true
 
 taxonomies:
+  category: categories
   tag: tags
 
 outputs:
@@ -17,20 +18,20 @@ outputs:
     - JSON
 
 params:
-  author: Stack Notes
-  authorInitials: SN
+  author: Veronika Khan
+  authorInitials: VK
   role: Software Engineering
   description: >
-    Technical notes on software architecture,
-    distributed systems, and engineering.
+    Technical notes on software engineering.
 
   homeEyebrow: ENGINEERING · FIELD NOTES
-  homeTitle: Notes on building software systems
+  homeTitle: Notes on building and testing software systems
   homeIntro: >
     Practical engineering notes, architectural decisions,
-    experiments, and lessons from building real systems.
+    experiments, and lessons from building and testing real systems.
 
   mainSection: articles
+  minTagPostsToIndex: 1
 
   showToc: true
   showTopics: true

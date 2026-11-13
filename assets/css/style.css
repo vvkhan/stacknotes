@@ -66,7 +66,7 @@ button, input { font: inherit; }
 .site-header { position: sticky; inset-block-start: 0; z-index: 50; background: rgba(250,250,247,.97); border-block-end: .125rem solid var(--line); }
 .site-header .container { min-height: 4.75rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .logo { min-height: 2.75rem; display: inline-flex; align-items: center; }
-.logo__main { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; }
+.logo__main { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.2; }
 .nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.75rem); }
 .nav-shell { display: contents; }
 .nav__link { min-height: 2.75rem; display: inline-flex; align-items: center; color: var(--muted); transition: color .15s ease-out; }
@@ -337,4 +337,351 @@ button, input { font: inherit; }
   .post__header, .post__body { padding-inline: 0; }
   .post__body a { color: black; }
   .post__body a::after { content: " (" attr(href) ")"; font-size: .8em; }
+}
+
+@media (max-width: 700px) {
+  .logo__main {
+    font-size: 1.6rem;
+  }
+}
+
+/* Site-wide three-column layout */
+
+.site-columns {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 11rem)
+    minmax(0, 1fr)
+    minmax(0, 14rem);
+  column-gap: 3rem;
+  width: min(calc(100% - 3rem), 112rem);
+  margin-inline: auto;
+  align-items: start;
+}
+
+.site-columns__main {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Homepage alignment within the three-column layout */
+
+.site-columns__main > .hero {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0 2rem 0 0;
+  box-sizing: border-box;
+}
+
+.site-columns__main > .section,
+.site-columns__main > .topics,
+.site-columns__main > .newsletter {
+  width: 100%;
+  max-width: none;
+}
+
+.site-columns__main > .section > .container,
+.site-columns__main > .topics > .container,
+.site-columns__main > .newsletter > .container {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* Left and right sidebars */
+
+.site-sidebar {
+  position: sticky;
+  top: 2rem;
+  min-width: 0;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-block: 2rem;
+  padding-inline: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Sidebar headings */
+
+.sidebar__heading {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Sidebar navigation links */
+
+.sidebar__links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.sidebar__links li {
+  margin-bottom: 0.85rem;
+}
+
+.sidebar__links a,
+.sidebar__toc a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sidebar__links a:hover,
+.sidebar__toc a:hover {
+  text-decoration: underline;
+}
+
+/* Category article counts */
+
+.sidebar__count {
+  float: right;
+  opacity: 0.6;
+}
+
+/* Right sidebar table of contents */
+
+.sidebar__toc ul {
+  list-style: none;
+  padding-left: 0.85rem;
+}
+
+.sidebar__toc li {
+  margin-block: 0.75rem;
+}
+
+.sidebar__toc a.is-active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Override Stacknote's original article layout */
+
+.site-columns .post-layout,
+.site-columns .post-layout.has-toc {
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+  margin-inline: 0;
+}
+
+.site-columns .post {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* Prevent the original TOC from occupying article space */
+
+.site-columns .post-toc {
+  display: none;
+}
+
+/* Stacknote already has an article TOC.
+   Hide the original to avoid displaying it twice. */
+
+.post-layout {
+  display: block;
+}
+
+.post-layout .post-toc {
+  display: none;
+}
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+  .site-columns {
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  }
+
+  .site-sidebar--right {
+    display: none;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .site-columns {
+    display: block;
+    width: 100%;
+  }
+
+  .site-sidebar--left {
+    position: static;
+    max-height: none;
+    padding: 1rem;
+  }
+}
+
+/* Wider site layout */
+
+.site-columns {
+  grid-template-columns:
+    minmax(0, 11rem)
+    minmax(0, 1fr)
+    minmax(0, 14rem);
+  width: min(calc(100% - 3rem), 112rem);
+  gap: clamp(1.25rem, 2vw, 2.5rem);
+}
+
+/* Override Stacknote's original article + TOC grid */
+
+.site-columns .post-layout,
+.site-columns .post-layout.has-toc {
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+  margin-inline: 0;
+}
+
+.site-columns .post {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* Comfortable reading width */
+
+.site-columns .post__header,
+.site-columns .post__body {
+  width: 100%;
+  max-width: none;
+}
+
+.site-columns .post__body {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+/* Hide the theme's original TOC */
+
+.site-columns .post-toc {
+  display: none;
+}
+
+/* Keep code and diagrams within the article */
+
+.site-columns .post__body pre,
+.site-columns .post__body .highlight,
+.site-columns .post__body .mermaid {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1100px) {
+  .site-columns {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(calc(100% - 2rem), 56rem);
+  }
+
+  .site-sidebar--left,
+  .site-sidebar--right {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-columns {
+    width: 100%;
+  }
+
+  .site-columns .post-layout {
+    padding-inline: 1rem;
+  }
+
+  .site-columns .post__body {
+    font-size: 1.05rem;
+  }
+}
+
+/* Mermaid diagrams */
+
+.post__body .mermaid {
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: #fff;
+  text-align: center;
+}
+
+.post__body .mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------
+   Layout alignment
+   - Header aligns with the sidebars' outer edges
+   - Uniform gutter between the center column and both sidebars
+   ------------------------------------------------------------------ */
+
+:root {
+  --layout-w: min(calc(100% - 3rem), 112rem);
+  --main-gutter: clamp(1.5rem, 3vw, 3rem);
+}
+
+@media (max-width: 1100px) {
+  :root { --layout-w: min(calc(100% - 2rem), 56rem); }
+}
+
+@media (max-width: 700px) {
+  :root { --layout-w: 100%; --main-gutter: 1rem; }
+}
+
+/* Header: logo on the left sidebar edge, menu on the right sidebar edge */
+.site-header .container {
+  width: var(--layout-w);
+  max-width: none;
+  padding-inline: 0;
+}
+
+@media (max-width: 700px) {
+  .site-header .container { padding-inline: 1rem; }
+}
+
+/* Same inner gutter for the center column on every page */
+.site-columns__main {
+  padding-inline: var(--main-gutter);
+}
+
+.site-columns__main > .hero {
+  padding-inline: 0;
+}
+
+.site-columns__main .container:not(.search-page):not(.error-page),
+.site-columns .post-layout,
+.site-columns .post-layout.has-toc,
+.site-columns .post__header,
+.site-columns .post__body {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.site-columns .post-layout {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .site-columns .post-layout { padding-inline: 0; }
 }

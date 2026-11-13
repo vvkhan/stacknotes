@@ -1,0 +1,50 @@
+
+{{ $section := .Site.Params.mainSection | default "articles" }}
+{{ $articles := where .Site.RegularPages "Section" $section }}
+{{ $recentArticles := first 5 $articles.ByDate.Reverse }}
+
+{{ if and .IsPage (in .TableOfContents "<li>") }}
+  <nav class="sidebar__toc" aria-label="Table of contents">
+    <h2 class="sidebar__heading">On This Page</h2>
+    {{ .TableOfContents }}
+  </nav>
+
+{{ else if .IsHome }}
+  <nav aria-label="Recent articles">
+    <h2 class="sidebar__heading">Recent Articles</h2>
+    <ul class="sidebar__links">
+      {{ range $recentArticles }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+
+{{ else if eq .Kind "term" }}
+  <nav aria-label="Related topics">
+    <h2 class="sidebar__heading">Related Topics</h2>
+    <ul class="sidebar__links">
+      {{ range first 10 .Site.Taxonomies.tags.ByCount }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}">
+            {{ .Page.Title }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+
+{{ else if eq .Kind "section" }}
+  <nav aria-label="Recent articles">
+    <h2 class="sidebar__heading">Recent Articles</h2>
+    <ul class="sidebar__links">
+      {{ range $recentArticles }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+
+{{ end }}
