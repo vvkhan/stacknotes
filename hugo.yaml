@@ -7,6 +7,11 @@ locale: en-US
 
 enableRobotsTXT: true
 
+markup:
+  tableOfContents:
+    startLevel: 1
+    endLevel: 3
+
 taxonomies:
   category: categories
   tag: tags
